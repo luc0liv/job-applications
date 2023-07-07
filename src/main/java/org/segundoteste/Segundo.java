@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class Segundo {
   private static List<Candidato> candidatos = new ArrayList<>();
-  private static List<Candidato> aprovados = new ArrayList<>();
+  private static List<String> aprovados = new ArrayList<>();
 
   private int id;
 
@@ -28,25 +28,24 @@ public class Segundo {
     }
 
   public void marcarEntrevista(int codCandidato) throws Exception {
-      boolean notFound = false;
-    System.out.println("tamanho do array de candidatos: " + candidatos.size());
+    boolean encontrado = false;
+
+    System.out.println("Tamanho da lista de candidatos: " + candidatos.size());
 
     for (Candidato candidato : candidatos) {
-      if (Objects.equals(candidato.getId(), codCandidato)) {
+      if (candidato.getId() == codCandidato) {
         System.out.println(candidato.getId() + " " + candidato.getNome());
-          candidato.setStatus("Qualificado");
-          notFound = false;
-          break;
+        candidato.setStatus("Qualificado");
+        encontrado = true;
+        break;
       }
-//      else {
-        notFound = true;
-//      }
     }
-    if (notFound == true) {
+
+    if (!encontrado) {
       throw new Exception("Candidato não encontrado");
     }
   }
-//
+
   public void desqualificarCandidato(int codCandidato) throws Exception {
     for (int i = 0; i < candidatos.size(); i++) {
       if (Objects.equals(candidatos.get(i).getId(), codCandidato)) {
@@ -70,29 +69,28 @@ public class Segundo {
   }
 //
   public void aprovarCandidato(int codCandidato) throws Exception {
-      boolean notTrue = false;
+      boolean notFound = false;
     for (Candidato candidato : candidatos) {
       if (Objects.equals(candidato.getId(), codCandidato)) {
         if (Objects.equals(candidato.getStatus(), "Qualificado")) {
           candidato.setStatus("Aprovado");
-          notTrue = false;
+          notFound = false;
           break;
         }
       }
-      notTrue = true;
+      notFound = true;
     }
 
-    if (notTrue == true) {
+    if (notFound) {
       throw new Exception("Candidato não encontrado");
     }
   }
-//
-  public List<Candidato> obterAprovados() {
-//    List<Candidato> candidatosAprovados = new ArrayList<>();
+
+  public List<String> obterAprovados() {
     for (Candidato candidato : candidatos) {
         if (Objects.equals(candidato.getStatus(), "Aprovado")) {
           System.out.println(candidato);
-          aprovados.add(candidato);
+          aprovados.add(candidato.getNome());
       }
     }
 
