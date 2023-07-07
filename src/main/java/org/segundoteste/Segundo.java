@@ -9,6 +9,8 @@ public class Segundo {
   private static List<Candidato> candidatos = new ArrayList<>();
   private static List<Candidato> aprovados = new ArrayList<>();
 
+  private int id;
+
     public int iniciarProcesso(String nome) throws Exception {
       if (nome == "" || nome == null) {
         throw new Exception("Nome inválido.");
@@ -18,24 +20,30 @@ public class Segundo {
           throw new Exception("Candidato já participa do processo.");
         }
       }
-
       Candidato novoCandidato = new Candidato(new IdGenerator().random(), nome, "Recebido");
       candidatos.add(novoCandidato);
-      System.out.println(candidatos);
+      this.id = novoCandidato.getId();
+      System.out.println("ID DO CANDIDATO: " + novoCandidato.getId());
       return novoCandidato.getId();
     }
 
   public void marcarEntrevista(int codCandidato) throws Exception {
+      boolean notFound = false;
+    System.out.println("tamanho do array de candidatos: " + candidatos.size());
+
     for (Candidato candidato : candidatos) {
       if (Objects.equals(candidato.getId(), codCandidato)) {
-        if (Objects.equals(candidato.getStatus(), "Recebido")) {
-//          System.out.println("Antigo status: " + candidato.getStatus());
+        System.out.println(candidato.getId() + " " + candidato.getNome());
           candidato.setStatus("Qualificado");
-//          System.out.println("Novo Status: " + candidato.getStatus());
-        }
-      } else {
-        throw new Exception("Candidato não encontrado");
+          notFound = false;
+          break;
       }
+//      else {
+        notFound = true;
+//      }
+    }
+    if (notFound == true) {
+      throw new Exception("Candidato não encontrado");
     }
   }
 //
@@ -62,14 +70,20 @@ public class Segundo {
   }
 //
   public void aprovarCandidato(int codCandidato) throws Exception {
+      boolean notTrue = false;
     for (Candidato candidato : candidatos) {
       if (Objects.equals(candidato.getId(), codCandidato)) {
         if (Objects.equals(candidato.getStatus(), "Qualificado")) {
           candidato.setStatus("Aprovado");
+          notTrue = false;
+          break;
         }
-      } else {
-        throw new Exception("Candidato não encontrado");
       }
+      notTrue = true;
+    }
+
+    if (notTrue == true) {
+      throw new Exception("Candidato não encontrado");
     }
   }
 //
@@ -83,5 +97,9 @@ public class Segundo {
     }
 
     return aprovados;
+  }
+
+  public int getId() {
+    return id;
   }
 }
