@@ -35,9 +35,11 @@ public class Segundo {
   public void marcarEntrevista(int codCandidato) throws Exception {
     for (Candidato candidato : candidatos) {
       if (Objects.equals(candidato.getId(), codCandidato)) {
-        System.out.println("Antigo status: " + candidato.getStatus());
-        candidato.setStatus("Qualificado");
-        System.out.println("Novo Status: " + candidato.getStatus());
+        if (Objects.equals(candidato.getStatus(), "Recebido")) {
+//          System.out.println("Antigo status: " + candidato.getStatus());
+          candidato.setStatus("Qualificado");
+//          System.out.println("Novo Status: " + candidato.getStatus());
+        }
       } else {
         throw new Exception("Candidato não encontrado");
       }
@@ -46,7 +48,17 @@ public class Segundo {
 //
 //  public void desqualificarCandidato(int codCandidato)
 //
-//  public String verificarStatusCandidato(int codCandidato)
+  public String verificarStatusCandidato(int codCandidato) throws Exception {
+      String statusDoCandidato = "";
+      for (Candidato candidato : candidatos) {
+        if (Objects.equals(candidato.getId(), codCandidato)) {
+          statusDoCandidato = candidato.getStatus();
+        } else {
+          throw new Exception("Candidato não encontrado");
+        }
+      }
+      return statusDoCandidato;
+  }
 //
 //  public void aprovarCandidato(int codCandidato)
 //
