@@ -8,8 +8,6 @@ public class Segundo {
   private static List<Candidato> candidatos = new ArrayList<>();
   private static List<String> aprovados = new ArrayList<>();
 
-  static int id;
-
     public int iniciarProcesso(String nome) throws Exception {
       if (nome == null || nome.isEmpty()) {
         throw new Exception("Nome inválido.");
@@ -110,9 +108,5 @@ public class Segundo {
     }
 
     return aprovados;
-  }
-
-  public int getId() {
-    return id;
   }
 }

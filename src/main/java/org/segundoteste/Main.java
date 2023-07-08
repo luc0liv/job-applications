@@ -28,5 +28,6 @@ public class Main {
 
     List<String> candidatosAprovados = teste4.obterAprovados();
     System.out.println(candidatosAprovados);
+    System.out.println(teste3.verificarStatusCandidato(2));
   }
 }
