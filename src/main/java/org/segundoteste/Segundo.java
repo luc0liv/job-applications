@@ -29,14 +29,14 @@ public class Segundo {
       for (int i = 0; i < candidatos.size(); i++) {
         if (candidatos.get(i).getId() == novoId) {
           novoId++;
-          i = -1; // Reinicia a iteração para verificar novamente desde o início
+          i = -1;
         }
       }
 
       novoCandidato.setId(novoId);
       this.id = novoCandidato.getId();
 
-      return this.id;
+      return novoCandidato.getId();
     }
 
   public void marcarEntrevista(int codCandidato) throws Exception {
@@ -70,7 +70,7 @@ public class Segundo {
       throw new Exception("Candidato não encontrado");
     }
   }
-//
+
   public String verificarStatusCandidato(int codCandidato) throws Exception {
       boolean encontrado = false;
       String statusDoCandidato = "";
