@@ -5,8 +5,8 @@ public class Candidato {
   private String nome;
   private String status;
 
-  public Candidato(int id, String nome, String status) {
-    this.id = id;
+  public Candidato(String nome, String status) {
+//    this.id = id;
     this.nome = nome;
     this.status = status;
   }
