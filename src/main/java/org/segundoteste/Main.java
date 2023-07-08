@@ -9,28 +9,24 @@ public class Main {
     Segundo teste3 = new Segundo();
     Segundo teste4 = new Segundo();
 
-    teste.iniciarProcesso("Luciana");
+    int candidato1 = teste.iniciarProcesso("Luciana");
+    int candidato2 = teste2.iniciarProcesso("Pedro");
+    int candidato3 = teste3.iniciarProcesso("Maria");
+    int candidato4 = teste4.iniciarProcesso("Laura");
 
-    teste.marcarEntrevista(teste.getId());
+    teste.marcarEntrevista(candidato1);
+    teste.aprovarCandidato(candidato1);
 
-    teste.aprovarCandidato(teste.getId());
+    teste2.marcarEntrevista(candidato2);
+    teste2.aprovarCandidato(candidato2);
 
-    teste2.iniciarProcesso("Pedro");
-    System.out.println(teste2.getId());
+    teste3.marcarEntrevista(candidato3);
+    teste3.desqualificarCandidato(candidato3);
 
-    teste2.marcarEntrevista(teste2.getId());
+    teste4.marcarEntrevista(candidato4);
+    teste4.aprovarCandidato(candidato4);
 
-    teste2.aprovarCandidato(teste2.getId());
-
-
-
-    System.out.println(teste3.verificarStatusCandidato(1));
-    teste3.iniciarProcesso("Joana");
-    teste3.desqualificarCandidato(2);
-    teste4.iniciarProcesso("Ja");
-
-
-    List<String> candidatosAprovados = teste2.obterAprovados();
+    List<String> candidatosAprovados = teste4.obterAprovados();
     System.out.println(candidatosAprovados);
   }
 }

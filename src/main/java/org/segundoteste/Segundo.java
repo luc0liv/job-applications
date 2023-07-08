@@ -34,7 +34,7 @@ public class Segundo {
       }
 
       novoCandidato.setId(novoId);
-      this.id = novoCandidato.getId();
+//      this.id = novoCandidato.getId();
 
       return novoCandidato.getId();
     }
@@ -44,7 +44,6 @@ public class Segundo {
 
     for (Candidato candidato : candidatos) {
       if (candidato.getId() == codCandidato) {
-        System.out.println(candidato.getId() + " " + candidato.getNome());
         candidato.setStatus("Qualificado");
         encontrado = true;
         break;
@@ -105,7 +104,6 @@ public class Segundo {
 
   public List<String> obterAprovados() {
     for (Candidato candidato : candidatos) {
-      System.out.println("CANDIDATOS: " + candidato.getId());
         if (Objects.equals(candidato.getStatus(), "Aprovado")) {
           aprovados.add(candidato.getNome());
       }
